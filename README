@@ -1,1 +1,15 @@
-# project 210 in progress
+# Urban Heat in Zurich (1985-2024)
+## *SDS210 Project Mina-Kim Bebi*
+This project is part of the UZH module SDS210 "Programmin with Spatial Data"(FS26) by Hendrik Wulf. For further information visit the course webpage: https://hendrikwulf.github.io/sds210-jb/ 
+
+The aim of this project is to identify and analyse patterns of temperature and vegetation in Zurich between the years 1985 and 2024, using Landsat data. For this, Land Surface Temperature (LST) and NDVI, an Index for identifying Vegetation, where analysed.
+
+XXX Notebook and R file
+
+The notebook is structered into 3 parts:
+
+0. Data import and preparation 
+1. How did LST and NDVI change from 1985 to 2024?
+2. How do NDVI and LST correlate and is this corelation effected by climate change?
+
+for additional details on the workflow and results consult the provided report "SDS210_mbebi_project_report". XXXX
