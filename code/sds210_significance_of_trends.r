@@ -1,11 +1,9 @@
-# set your workindirectors to the data folder
-setwd("data")
 #load required libraries
 library(tidyverse)
 library(ggfortify)
 
 #load data
-NL = read_csv("NDVI_LST.csv")
+NL = read_csv("data/NDVI_LST.csv")
 
 ## exclude waterbodies from analysis:
 filtered = filter(NL, NDVI >= 0)
