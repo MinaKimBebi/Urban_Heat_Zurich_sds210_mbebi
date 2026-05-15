@@ -1,15 +1,57 @@
 # Urban Heat in Zurich (1985-2024)
-## *SDS210 Project Mina-Kim Bebi*
-This project is part of the UZH module SDS210 "Programmin with Spatial Data"(FS26) by Hendrik Wulf. For further information visit the course webpage: https://hendrikwulf.github.io/sds210-jb/ 
+*SDS210 Project Mina-Kim Bebi*
+## Introduction
+This project is part of the UZH module SDS210 "Programming with Spatial Data"(FS26) by Hendrik Wulf. For further information visit the course webpage: https://hendrikwulf.github.io/sds210-jb/ 
 
-The aim of this project is to identify and analyse patterns of temperature and vegetation in Zurich between the years 1985 and 2024, using Landsat data. For this, Land Surface Temperature (LST) and NDVI, an Index for identifying Vegetation, where analysed.
+The aim of this project is to identify and analyse patterns of temperature and vegetation in Zurich between the years 1985 and 2024, using Landsat data. For this, Land Surface Temperature (LST) and NDVI, an index for identifying Vegetation, were analysed.
 
-XXX Notebook and R file
+## Repository structure
+```text
+project/
+├── code/
+├── data/
+├── renv/
+├── .gitignore
+├── .Rprofile
+├── README.md
+├── renv.lock
+├── requirements.txt
+```
 
+## Setup
+This analysis contains Python code (Jupyter notebook) and R script. both files can be found in the "code" folder. Set up both the Python and the R environment, then run first the Jupyter Notebook, then the R script file, because the data used in the R analysis is generated in the notebook.
+
+For additional details on the workflow and results consult the provided report "SDS210_mbebi_project_report". XXX
+
+### Python setup
+This project uses **venv** to manage python packages. All used packages are listed in the file *requirements.txt*
+Create a virtual environment in the project root:
+```bash
+# 1. create new environment
+python -m venv .venv 
+# 2. activate on OS/linux
+source .venv/bin/activate 
+# 2. activate on Windows
+.venv\Scripts\activate
+# 3. install packages
+pip install -r requirements.txt
+```
 The notebook is structered into 3 parts:
 
 0. Data import and preparation 
 1. How did LST and NDVI change from 1985 to 2024?
-2. How do NDVI and LST correlate and is this corelation effected by climate change?
+2. How do NDVI and LST correlate and is this correlation affected by climate change?
 
-for additional details on the workflow and results consult the provided report "SDS210_mbebi_project_report". XXXX
+
+### R setup
+This project uses **renv** to manage R package dependencies and ensure reproducibility.
+
+1. Open the project in R
+Make sure your working directory is the project root (where `renv.lock` is located).
+
+```r id="v3m8qa"
+# 2.install renv (if not already installed)
+install.packages("renv")
+# 3. restore project environment from renv.lock
+renv::restore()
+``` 
