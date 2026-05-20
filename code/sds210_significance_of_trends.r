@@ -1,9 +1,11 @@
+#if not already done, set your working directory to the project folder
+#setwd("xxx/Urban_Heat_Zurich_sds210_mbebi")
 #load required libraries
 library(tidyverse)
 library(ggfortify)
 
 #load data
-NL = read_csv("data/NDVI_LST.csv")
+NL = read_csv("data/processed/NDVI_LST.csv")
 
 ## exclude waterbodies from analysis:
 filtered = filter(NL, NDVI >= 0)
@@ -13,8 +15,9 @@ filtered = filter(NL, NDVI >= 0)
 fit = lm(LST ~ NDVI, data = filtered)
 
 ## control model assumptions
-fit_assumptions = autoplot(fit)
-show(fit_assumptions)#this can take a while
+png(file="outputs/2_3_model_assumptions_simple_model.png")
+autoplot(fit)
+dev.off()
 ### we see some deviations from normal behaviour,which is not unexpected,
 ### because the pixels are not independant (common with spatial data)
 ### p-values should therefore be treated cautiously
@@ -27,19 +30,22 @@ print(paste("Coefficients: intercept:", round(fit$coefficients[1],1), "°C, slop
 print(paste("NDVI explains", round(fit_summary$r.squared * 100, 2), "% of the variation in LST"))
 print(paste("the p-value is:", fit_assessment["NDVI", "Pr(>F)"]))# not trustworthy! 
 
+
 # Analysis of significance of explainer "year" for 2.2
+#center time
+centered = filtered |>mutate(time_cent = time - mean(time))
 
 ## fit a linear model, with the year and interaction included
-fit_year = lm(LST ~ NDVI * year, data = filtered)
+fit_year = lm(LST ~ NDVI * time, data = centered)
 
 ## control model assumptions
-fit_year_assumptions = autoplot(fit_year)
-show(fit_year_assumptions)# similar patterns as in analysis for 2.1
+png(file="outputs/2_3_model_assumptions_with_time.png")
+autoplot(fit_year)# similar patterns as in analysis for 2.1
+dev.off()
 
 ## assess model fit
 fit_year_summary = summary(fit_year)
-fit_year_assessment = anova(fit_year)
 
-print(paste("the p-value for the year is:", fit_year_assessment["year", "Pr(>F)"]))
-print(paste("the p-value for the interaction is:", fit_year_assessment["NDVI:year", "Pr(>F)"]))
-#both not siginfcant(at all!)
+print(paste("the p-value for the interaction is:", fit_year_assessment["NDVI:time", "Pr(>F)"]))
+# there is no siginficant interaction, --> time has the same effect at every NDVI value
+
