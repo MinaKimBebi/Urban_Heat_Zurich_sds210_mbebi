@@ -45,7 +45,11 @@ dev.off()
 
 ## assess model fit
 fit_year_summary = summary(fit_year)
+fit_year_assessment = anova(fit_year)
 
-print(paste("the p-value for the interaction is:", fit_year_assessment["NDVI:time", "Pr(>F)"]))
-# there is no siginficant interaction, --> time has the same effect at every NDVI value
+print(paste("the p-value for the interaction is:", round(fit_year_assessment["NDVI:time", "Pr(>F)"], 2)))
+print(paste("effect size of the interaction:", round(coef(fit_year)["NDVI:time"], 2),"°C / year"))
+### there is siginficant interaction (but again p-value is to be used cautiosly), 
+### --> time doesn't have the same effect at every NDVI value, 
+### the effect is however very small (a shift of 0.01 in the slope). 
 
