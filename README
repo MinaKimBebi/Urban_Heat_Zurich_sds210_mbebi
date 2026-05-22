@@ -9,11 +9,12 @@ The aim of this project is to identify and analyse patterns of temperature and v
 ```text
 project/
 ├── code/
-│   ├── heattreds_in_ZUrich.ipynb
+│   ├── heattrends_in_ZUrich.ipynb
 │   └── significance_of_trends.r
 ├── data/
 │   ├── raw/
 │   └── processed/
+├── outputs
 ├── renv/
 ├── .gitignore
 ├── .Rprofile
@@ -26,7 +27,7 @@ project/
 This analysis contains Python code (Jupyter notebook) and R script. both files can be found in the "code" folder. Set up both the Python and the R environment, then run first the Jupyter Notebook, then the R script file, because the data used in the R analysis is generated in the notebook.
 Static plots are saved in the output folder and labeld with the section number.
 
-For additional details on the workflow and results consult the provided report "SDS210_mbebi_project_report". XXX
+For additional details on the workflow and results consult the provided report "SDS210_mbebi_project_report".
 
 ### Python setup
 This project uses **venv** to manage python packages. All used packages are listed in the file *requirements.txt*
